@@ -1,35 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strlcat.c                                       :+:      :+:    :+:   */
+/*   ft_lstnew.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: cdoria <cdoria@student.21-school.ru>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/10/05 12:19:21 by cdoria            #+#    #+#             */
-/*   Updated: 2021/10/11 18:33:58 by cdoria           ###   ########.fr       */
+/*   Created: 2021/10/10 12:35:54 by cdoria            #+#    #+#             */
+/*   Updated: 2021/10/10 15:34:55 by cdoria           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-size_t	ft_strlcat(char *dst, const char *src, size_t size)
+t_list	*ft_lstnew(void *content)
 {
-	size_t	index;
-	size_t	dst_len;
+	t_list	*ob;
 
-	if (!src && !dst)
-		return (0);
-	if (!size)
-		return (ft_strlen(src));
-	dst_len = ft_strlen(dst);
-	if (dst_len >= size)
-		return (size + ft_strlen(src));
-	index = 0;
-	while (index + dst_len < size - 1 && src[index])
-	{
-		dst[index + dst_len] = src[index];
-		index++;
-	}
-	dst[index + dst_len] = '\0';
-	return (dst_len + ft_strlen(src));
+	ob = malloc (sizeof(t_list));
+	if (!ob)
+		return (NULL);
+	ob->content = content;
+	ob->next = NULL;
+	return (ob);
 }
